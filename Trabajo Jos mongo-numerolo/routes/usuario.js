@@ -32,7 +32,6 @@ router.put("/:id", [
 ],putUsuario)
 
 
-
 router.put("/activar/:id",putUsuarioActivar)
 
 
