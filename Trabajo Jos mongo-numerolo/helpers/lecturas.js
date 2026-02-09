@@ -17,7 +17,7 @@ const generarLecturaGemini = async (fechaNacimiento, tipo) => {
         }
 
         // Configuración estándar que suele funcionar
-        const url = `https://generativelanguage.googleapis.com/v1/models/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
+        const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
 
 
         const response = await axios.post(url, {

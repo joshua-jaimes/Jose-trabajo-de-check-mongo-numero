@@ -52,6 +52,21 @@ const postLecturas = async (req, res) => {
                     msg: "Necesitas una membresía activa para acceder a lecturas diarias"
                 })
             }
+
+            const inicioDia = new Date()
+            inicioDia.setHours(0, 0, 0, 0)
+            const finDia = new Date()
+            finDia.setHours(23, 59, 59, 999)
+            const lecturaDiariaExistente = await Lectura.findOne({
+                usuario_id,
+                tipo: 'diaria',
+                fecha_lectura: { $gte: inicioDia, $lte: finDia }
+            })
+            if (lecturaDiariaExistente) {
+                return res.status(400).json({
+                    msg: "Ya tienes una lectura diaria para hoy. Vuelve mañana para una nueva."
+                })
+            }
         }
         // Generar el contenido con Gemini
         const contenido = await generarLecturaGemini(usuario.fechanacimiento, tipo)
